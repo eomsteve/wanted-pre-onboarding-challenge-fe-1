@@ -2,6 +2,6 @@ import { FC } from 'react';
 
 export const InputEmail : FC = () =>{
   return (
-    <input type="email" required />
+    <input className="border-2 " type="email" required />
   )
 }

@@ -5,7 +5,7 @@ import { ConfirmButton } from '../../components/users/ConfirmButton';
 import type { UserForm } from '../../modules/API/types';
 import { loginApi } from '../../modules/API/auth';
 
-export const LoginPage : FC = () => {
+export const UserPage : FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -9,10 +9,9 @@ export const loginApi = async (userInput: UserForm) => {
       password: userInput.userPassword,
     });
     console.log(data);
-    
     return data;
-  } catch ( error ) {
-    const err = error  as AxiosError;
+  } catch (error) {
+    const err = error as AxiosError;
     const message = err.response?.data;
     console.error('login API error : ', error);
     return message;
@@ -28,7 +27,7 @@ export const signUpApi = async (userInput: UserForm) => {
     console.log(data);
     return data;
   } catch (error) {
-    const err = error  as AxiosError;
+    const err = error as AxiosError;
     const message = err.response?.data;
     console.error('signUp API error : ', error);
     return message;

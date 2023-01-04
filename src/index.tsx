@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { authHeader } from './modules/API/authHeader';
 import {
   RecoilRoot,
   atom,
@@ -15,9 +15,15 @@ import {
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+if (localStorage.getItem('loginToken') != null) {
+  const token = localStorage.getItem('loginToken');
+  authHeader(token);
+}
+
 root.render(
   <React.StrictMode>
-        <RecoilRoot>
+    <RecoilRoot>
       <App />
     </RecoilRoot>
   </React.StrictMode>

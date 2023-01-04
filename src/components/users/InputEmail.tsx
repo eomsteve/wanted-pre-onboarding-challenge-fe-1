@@ -12,10 +12,9 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
 
       if (userInputEmail.includes('@') && userInputEmail.includes('.')) {
         setMessage('@#$!');
-        inputHandler(true);
+        setEmail(()=>userInputEmail);
+        inputHandler(true, email);
       } else {
-        setEmail(userInputEmail);
-        setMessage('');
         inputHandler(false);
       }
     },
@@ -25,8 +24,8 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
     <>
       <input
         className="border-2 "
-        onChange={checkEmailValidation}
         type="email"
+        onChange={checkEmailValidation}
         required
       />
       <p className="border-2">{message}</p>

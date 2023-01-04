@@ -11,6 +11,7 @@ export const UserPage: FC = () => {
   const [isPassword, setIsPassword] = useState<boolean>(false);
   const [userInputEmail, setUserInputEmail] = useState<string>('');
   const [userInputPassword, setUserInputPassword] = useState<string>('');
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
 
   const emailInputHandle = useCallback(
     (validation: boolean, email: string) => {
@@ -35,19 +36,35 @@ export const UserPage: FC = () => {
       userEmail: userInputEmail,
       userPassword: userInputPassword,
     };
-    loginApi(data).then(res => {
-      alert(res.details)
-    });
+    if(isLoginMode) {
+      loginApi(data).then(res => {
+        if(res.message){
+          alert(res.message);
+        }else{
+          alert(res.details)
+        }
+      });
+    }else{
+      signUpApi(data).then(res=>{
+        if(res.message){
+          alert(res.message)
+        }else{
+          alert(res.details)
+        }
+      })
+    }
   };
 
+  const handleMode = ()=> setIsLoginMode(!isLoginMode)
   return (
     <>
       <h1>hello world!</h1>
       <form onSubmit={handleSubmit}>
         <InputEmail inputHandler={emailInputHandle} />
         <InputPassword inputHandler={passwordInputHandle} />
-        <ConfirmButton inputCondition={isEmail && isPassword} />
+        <ConfirmButton inputCondition={isEmail && isPassword} loginMode={isLoginMode}/>
       </form>
+      <span className={`hover:cursor-pointer`} onClick={handleMode}> {isLoginMode ? `회원가입 하러가기` : '로그인 하러가기'} </span>
     </>
   );
 };

@@ -11,10 +11,11 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
       const userInputEmail = e.target.value;
 
       if (userInputEmail.includes('@') && userInputEmail.includes('.')) {
-        setMessage('@#$!');
         setEmail(()=>userInputEmail);
-        inputHandler(true, email);
+        setMessage('');
+        inputHandler(true, userInputEmail);
       } else {
+        setMessage('이메일 형식을 맞춰 주세요.');
         inputHandler(false);
       }
     },
@@ -23,7 +24,7 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
   return (
     <>
       <input
-        className="border-2 "
+        className="border-2"
         type="email"
         onChange={checkEmailValidation}
         required

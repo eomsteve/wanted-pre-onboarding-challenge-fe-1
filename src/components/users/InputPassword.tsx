@@ -16,7 +16,7 @@ export const InputPassword: FC<PasswordProps> = ({ inputHandler }) => {
       } else {
         setPassword(()=>userInputPassword);
         setMessage('');
-        inputHandler(true, password);
+        inputHandler(true, userInputPassword);
       }
     },
     [password]

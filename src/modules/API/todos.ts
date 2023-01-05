@@ -7,7 +7,7 @@ export const getTodos = () =>
     functionName: 'getTodos',
   });
 
-export const getTodoById = (id: string | number) =>
+export const getTodoById = (id: string) =>
   axiosRequest({
     method: 'GET',
     url: `/todos/${id}`,

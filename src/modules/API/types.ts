@@ -21,3 +21,10 @@ export interface CreateUpDateTodoList{
   title: string;
   content : string;
 }
+
+
+export interface TodoData extends CreateUpDateTodoList{
+  id: string;
+  createdAt : string;
+  updatedAt : string;
+}

@@ -4,6 +4,7 @@ interface PasswordProps {
   inputHandler: Function;
 }
 export const InputPassword: FC<PasswordProps> = ({ inputHandler }) => {
+  // need state refactoring 
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const checkPasswordValidation = useCallback(

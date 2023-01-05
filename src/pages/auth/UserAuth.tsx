@@ -1,11 +1,11 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, useEffect } from 'react';
 import { InputEmail } from '../../components/users/InputEmail';
 import { InputPassword } from '../../components/users/InputPassword';
 import { ConfirmButton } from '../../components/users/ConfirmButton';
 import type { UserForm, AuthApiResponse } from '../../modules/API/types';
 import { loginApi } from '../../modules/API/auth';
 import { signUpApi } from '../../modules/API/auth';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export const UserPage: FC = () => {
   const navigate = useNavigate();
@@ -14,36 +14,32 @@ export const UserPage: FC = () => {
   const [userInputEmail, setUserInputEmail] = useState<string>('');
   const [userInputPassword, setUserInputPassword] = useState<string>('');
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
-
-  const emailInputHandle = useCallback(
-    (validation: boolean, email: string) => {
-      setIsEmail(() => validation);
-      setUserInputEmail(() => email);
-    },
-    [isEmail]
-  );
+  const emailInputHandle = useCallback((validation: boolean, email: string) => {
+    setIsEmail(() => validation);
+    setUserInputEmail(() => email);
+  }, []);
 
   const passwordInputHandle = useCallback(
     (validation: boolean, password: string) => {
       setIsPassword(() => validation);
       setUserInputPassword(() => password);
     },
-    [isPassword]
+    []
   );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('submit form');
     const data: UserForm = {
-      userEmail: userInputEmail,
-      userPassword: userInputPassword,
+      email: userInputEmail,
+      password: userInputPassword,
     };
     if (isLoginMode) {
       loginApi(data).then((res: AuthApiResponse) => {
         if (res.message) {
           alert(res.message);
           res.token && localStorage.setItem('loginToken', res.token);
-          navigate('/')
+          navigate('/');
         } else {
           alert(res.details);
         }
@@ -53,7 +49,7 @@ export const UserPage: FC = () => {
         if (res.message) {
           alert(res.message);
           res.token && localStorage.setItem('loginToken', res.token);
-          navigate('/')
+          navigate('/');
         } else {
           alert(res.details);
         }

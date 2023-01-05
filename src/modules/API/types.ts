@@ -1,6 +1,6 @@
 export interface UserForm {
-  userEmail: string;
-  userPassword: string;
+  email: string;
+  password: string;
 }
 
 export interface AuthApiResponse {
@@ -10,11 +10,11 @@ export interface AuthApiResponse {
 }
 
 
-export interface AxiosRequest {
+export interface AxiosRequest{
   method: string;
   url: string;
   functionName: string;
-  body? : CreateUpDateTodoList;
+  body? : UserForm | CreateUpDateTodoList;
 }
 
 export interface CreateUpDateTodoList{

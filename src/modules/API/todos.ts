@@ -1,22 +1,4 @@
-import axios, { AxiosError } from 'axios';
-import type { AxiosRequest } from './types';
-const API_URL = 'http://localhost:8080';
-
-const axiosRequest = async ({ method, url, functionName }: AxiosRequest) => {
-  try {
-    const { data } = await axios({
-      method,
-      url: API_URL + url,
-    });
-    console.log('result data : ', data);
-    return data;
-  } catch (error) {
-    const err = error as AxiosError;
-    const message = err.response?.data;
-    console.error(`[${method}] ${functionName} API error :`, error);
-    return message;
-  }
-};
+import { axiosRequest } from './axiosUtils';
 
 export const getTodos = () =>
   axiosRequest({
@@ -30,4 +12,33 @@ export const getTodoById = (id: string | number) =>
     method: 'GET',
     url: `/todos/${id}`,
     functionName: 'getTodos',
+  });
+
+export const createTodo = (title: string, content: string) =>
+  axiosRequest({
+    method: 'POST',
+    url: `/todos`,
+    functionName: 'createTodo',
+    body: {
+      title,
+      content,
+    },
+  });
+
+export const updateTodo = (id: string, title: string, content: string) =>
+  axiosRequest({
+    method: 'PUT',
+    url: `todos/${id}`,
+    functionName: 'updateTodo',
+    body: {
+      title,
+      content,
+    },
+  });
+
+export const deleteTodo = (id: string) =>
+  axiosRequest({
+    method: 'DELETE',
+    url: `todos/${id}`,
+    functionName: 'deleteTodo',
   });

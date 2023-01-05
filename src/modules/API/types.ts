@@ -14,4 +14,10 @@ export interface AxiosRequest {
   method: string;
   url: string;
   functionName: string;
+  body? : CreateUpDateTodoList;
+}
+
+export interface CreateUpDateTodoList{
+  title: string;
+  content : string;
 }

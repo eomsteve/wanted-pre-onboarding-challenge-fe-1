@@ -12,12 +12,12 @@ export const TodoPage: FC = () => {
   //goto auth page when not logged in
   useEffect(() => {
     if (isLoggedIn()) {
-      const data = async () => {
+      const requestTodos = async () => {
         const result = await getTodos();
-        console.log(result);
-        return result;
+        console.log(result.data);
+        setTodoList( result.data);
       };
-      data();
+      requestTodos();
     } else {
       navigate('/auth');
     }

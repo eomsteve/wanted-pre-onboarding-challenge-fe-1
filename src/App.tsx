@@ -1,21 +1,21 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserPage } from './pages/auth/UserAuth';
 import { TodoPage } from './pages/TodoList/TodoList';
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element : <TodoPage/>
-  },
-  {
-    path: '/auth',
-    element: <UserPage/>,
-  },
-]);
 
 function App() {
+  const isLogin = !!localStorage.getItem('loginToken');
+
   return (
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        {isLogin ? (
+          <Route path="/" element={<TodoPage />} />
+        ) : (
+          <Route path="/auth" element={<UserPage />} />
+        )}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

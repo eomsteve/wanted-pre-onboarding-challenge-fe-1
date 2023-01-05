@@ -3,7 +3,12 @@ import { getTodos } from '../../modules/API/todos';
 
 export const TodoPage: FC = () => {
   useEffect(()=>{
-    getTodos()
+    const data = async () => {
+      const result = await getTodos();
+      console.log(result)
+      return result;
+      };
+      data();
   },[])
   return (
     <>

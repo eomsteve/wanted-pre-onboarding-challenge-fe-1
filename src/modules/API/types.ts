@@ -9,3 +9,9 @@ export interface AuthApiResponse {
   details? : string;
 }
 
+
+export interface AxiosRequest {
+  method: string;
+  url: string;
+  functionName: string;
+}

@@ -1,17 +1,33 @@
 import axios, { AxiosError } from 'axios';
-import type { UserForm } from './types';
+import type { AxiosRequest } from './types';
+const API_URL = 'http://localhost:8080';
 
-const API_URL = 'http://localhost:8080/';
-
-
-export const getTodos = async() =>{
+const axiosRequest = async ({ method, url, functionName }: AxiosRequest) => {
   try {
-    const { data } = await axios.get(API_URL + 'todos');
-    return data
+    const { data } = await axios({
+      method,
+      url: API_URL + url,
+    });
+    console.log('result data : ', data);
+    return data;
   } catch (error) {
     const err = error as AxiosError;
     const message = err.response?.data;
-    console.error('GET todos API error : ', error);
+    console.error(`[${method}] ${functionName} API error :`, error);
     return message;
   }
-}
+};
+
+export const getTodos = () =>
+  axiosRequest({
+    method: 'GET',
+    url: '/todos',
+    functionName: 'getTodos',
+  });
+
+export const getTodoById = (id: string | number) =>
+  axiosRequest({
+    method: 'GET',
+    url: `/todos/${id}`,
+    functionName: 'getTodos',
+  });

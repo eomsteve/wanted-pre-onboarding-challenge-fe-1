@@ -22,9 +22,13 @@ export const axiosRequest = async ({ method, url, functionName, body }: AxiosReq
 
 export const authHeader= (token: string | null) => {
   if (token != null) {
-    axios.defaults.headers.common['Authorization'] = `${token}`;
+    return axios.defaults.headers.common['Authorization'] = `${token}`;
   } else {
-    delete axios.defaults.headers.common['Authorization'];
+    return delete axios.defaults.headers.common['Authorization'];
   }
 }
 
+export const isLoggedIn = () : boolean =>{
+  authHeader(localStorage.getItem('loginToken'))
+  return !!localStorage.getItem('loginToken');
+}

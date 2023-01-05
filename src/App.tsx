@@ -1,18 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, redirect } from 'react-router-dom';
 import { UserPage } from './pages/auth/UserAuth';
 import { TodoPage } from './pages/TodoList/TodoList';
+import { isLoggedIn } from './modules/API/axiosUtils';
 
 function App() {
-  const isLogin = !!localStorage.getItem('loginToken');
-
   return (
     <BrowserRouter>
       <Routes>
-        {isLogin ? (
+        {isLoggedIn() ? (
           <Route path="/" element={<TodoPage />} />
         ) : (
-          <Route path="/auth" element={<UserPage />} />
+          <>
+            <Route path="/" element={<TodoPage />} />
+            <Route path="/auth" element={<UserPage />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>

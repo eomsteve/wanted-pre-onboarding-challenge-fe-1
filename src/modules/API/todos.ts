@@ -11,7 +11,7 @@ export const getTodoById = (id: string | number) =>
   axiosRequest({
     method: 'GET',
     url: `/todos/${id}`,
-    functionName: 'getTodos',
+    functionName: 'getTodoById',
   });
 
 export const createTodo = (title: string, content: string) =>

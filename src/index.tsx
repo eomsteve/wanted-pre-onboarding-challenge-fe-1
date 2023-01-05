@@ -16,10 +16,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-if (localStorage.getItem('loginToken') != null) {
-  const token = localStorage.getItem('loginToken');
-  authHeader(token);
-}
 
 root.render(
   <React.StrictMode>

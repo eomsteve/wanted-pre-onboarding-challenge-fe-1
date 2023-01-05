@@ -14,8 +14,8 @@ export const TodoPage: FC = () => {
     if (isLoggedIn()) {
       const requestTodos = async () => {
         const result = await getTodos();
-        console.log(result.data);
-        setTodoList( result.data);
+        // console.log(result.data);
+        setTodoList(result.data);
       };
       requestTodos();
     } else {
@@ -26,18 +26,23 @@ export const TodoPage: FC = () => {
   return (
     <>
       <h1>this is root page</h1>
-        <CreateTodoButton/>
-        <br />
+      <CreateTodoButton />
+      <br />
       <ul>
         {todoList.map(({ title, content, id }) => {
           return (
-            <Link key={id} to={`todos/${id}`}>
-              <Todo title={title} content={content} />
-            </Link>
+            <li key={id} className="mb-3">
+              <Link to={`/${id}`}>
+                <Todo title={title} content={content} />
+              </Link>
+            </li>
           );
         })}
       </ul>
-      <Outlet />
+      <hr />
+      <div>
+        <Outlet />
+      </div>
     </>
   );
 };

@@ -1,10 +1,15 @@
 import { FC } from 'react';
-import type { CreateUpDateTodoList } from '../../modules/API/types';
-export const Todo: FC<CreateUpDateTodoList> = ({ title, content }) => {
+import { Link } from 'react-router-dom';
+import type { TodoData } from '../../modules/API/types';
+import { deleteTodo } from '../../modules/API/todos';
+export const Todo: FC<TodoData> = ({ title, content, id }) => {
   return (
     <>
-      <header>{title}</header>
-      <p>{content}</p>
+      <Link to={`/${id}`}>
+        <header>{title}</header>
+        <p>{content}</p>
+      </Link>
+      <button onClick={()=>deleteTodo(id)}>Delete</button>
     </>
   );
 };

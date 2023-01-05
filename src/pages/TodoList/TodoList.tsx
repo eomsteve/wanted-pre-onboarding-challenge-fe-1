@@ -32,9 +32,7 @@ export const TodoPage: FC = () => {
         {todoList.map(({ title, content, id }) => {
           return (
             <li key={id} className="mb-3">
-              <Link to={`/${id}`}>
-                <Todo title={title} content={content} />
-              </Link>
+                <Todo title={title} content={content} id={id} />
             </li>
           );
         })}

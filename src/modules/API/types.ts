@@ -25,6 +25,6 @@ export interface CreateUpDateTodoList{
 
 export interface TodoData extends CreateUpDateTodoList{
   id: string;
-  createdAt : string;
-  updatedAt : string;
+  createdAt?: string;
+  updatedAt?: string;
 }

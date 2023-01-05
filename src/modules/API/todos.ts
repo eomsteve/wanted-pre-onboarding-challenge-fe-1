@@ -28,7 +28,7 @@ export const createTodo = (title: string, content: string) =>
 export const updateTodo = (id: string, title: string, content: string) =>
   axiosRequest({
     method: 'PUT',
-    url: `todos/${id}`,
+    url: `/todos/${id}`,
     functionName: 'updateTodo',
     body: {
       title,
@@ -39,6 +39,6 @@ export const updateTodo = (id: string, title: string, content: string) =>
 export const deleteTodo = (id: string) =>
   axiosRequest({
     method: 'DELETE',
-    url: `todos/${id}`,
+    url: `/todos/${id}`,
     functionName: 'deleteTodo',
   });

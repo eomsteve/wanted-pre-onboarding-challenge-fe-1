@@ -11,7 +11,7 @@ export const TodoDetail: FC = () => {
       
     }
   }, []);
-  return <>
-  <header></header>
-  </>;
+  return (<>
+  <header>디테일 헤더</header>
+  </>);
 };

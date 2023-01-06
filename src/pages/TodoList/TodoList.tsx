@@ -5,10 +5,11 @@ import { isLoggedIn } from '../../modules/API/axiosUtils';
 import { TodoData } from '../../modules/API/types';
 import { Todo } from '../../components/Todo/Todo';
 import { CreateTodoButton } from '../../components/Todo/CreateTodoButton';
-
+import { todoState } from '../../modules/recoil/atom/todos';
+import { useRecoilState } from 'recoil';
 export const TodoPage: FC = () => {
   const navigate = useNavigate();
-  const [todoList, setTodoList] = useState<TodoData[]>([]);
+  const [todoList, setTodoList] = useRecoilState<TodoData[]>(todoState);
   //goto auth page when not logged in
   useEffect(() => {
     if (isLoggedIn()) {

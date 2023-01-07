@@ -15,7 +15,6 @@ export const TodoPage: FC = () => {
     if (isLoggedIn()) {
       const requestTodos = async () => {
         const result = await getTodos();
-        // console.log(result.data);
         setTodoList(result.data);
       };
       requestTodos();

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import type { TodoData } from '../../modules/API/types';
-import { deleteTodo, updateTodo } from '../../modules/API/todos';
+import type { TodoData } from '../../API/types';
+import { deleteTodo, updateTodo } from '../../API/todos';
 
 export const Todo: FC<TodoData> = ({ title, content, id }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);

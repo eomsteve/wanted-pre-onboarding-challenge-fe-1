@@ -9,7 +9,7 @@ import {
 import { UserPage } from './pages/auth/UserAuth';
 import { TodoPage } from './pages/TodoList/TodoList';
 import { TodoDetail } from './pages/TodoList/TodoDetail';
-import { isLoggedIn } from './modules/API/axiosUtils';
+import { isLoggedIn } from './API/axiosUtils';
 
 function App() {
   return (

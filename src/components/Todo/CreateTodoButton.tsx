@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
-import type { CreateUpDateTodoList, TodoData } from '../../modules/API/types';
-import { createTodo, getTodos } from '../../modules/API/todos';
+import type { CreateUpDateTodoList, TodoData } from '../../API/types';
+import { createTodo, getTodos } from '../../API/todos';
 import {
   useQuery,
   useMutation,

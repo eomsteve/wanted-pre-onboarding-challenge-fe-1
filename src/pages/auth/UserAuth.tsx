@@ -2,9 +2,9 @@ import { FC, useState, useCallback, useEffect } from 'react';
 import { InputEmail } from '../../components/users/InputEmail';
 import { InputPassword } from '../../components/users/InputPassword';
 import { ConfirmButton } from '../../components/users/ConfirmButton';
-import type { UserForm, AuthApiResponse } from '../../modules/API/types';
-import { loginApi } from '../../modules/API/auth';
-import { signUpApi } from '../../modules/API/auth';
+import type { UserForm, AuthApiResponse } from '../../API/types';
+import { loginApi } from '../../API/auth';
+import { signUpApi } from '../../API/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const UserPage: FC = () => {

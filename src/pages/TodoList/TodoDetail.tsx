@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
-import { getTodoById } from '../../modules/API/todos';
+import { getTodoById } from '../../API/todos';
 import { useParams } from 'react-router-dom';
-import type { TodoData } from '../../modules/API/types';
+import type { TodoData } from '../../API/types';
 
 export const TodoDetail: FC = () => {
   const { id } = useParams();

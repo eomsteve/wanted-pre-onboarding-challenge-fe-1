@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, redirect,Outlet } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  redirect,
+  Outlet,
+} from 'react-router-dom';
 import { UserPage } from './pages/auth/UserAuth';
 import { TodoPage } from './pages/TodoList/TodoList';
 import { TodoDetail } from './pages/TodoList/TodoDetail';

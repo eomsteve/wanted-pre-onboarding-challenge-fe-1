@@ -1,9 +1,12 @@
 import { FC } from 'react';
 interface ConfirmProps {
   inputCondition: boolean;
-  loginMode : boolean;
+  loginMode: boolean;
 }
-export const ConfirmButton: FC<ConfirmProps> = ({ inputCondition, loginMode }) => {
+export const ConfirmButton: FC<ConfirmProps> = ({
+  inputCondition,
+  loginMode,
+}) => {
   return (
     <button
       className={`border-2 ${inputCondition ? ' ' : 'bg-gray-200'}`}

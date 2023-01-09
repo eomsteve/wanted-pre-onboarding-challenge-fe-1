@@ -11,7 +11,7 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
       const userInputEmail = e.target.value;
 
       if (userInputEmail.includes('@') && userInputEmail.includes('.')) {
-        setEmail(()=>userInputEmail);
+        setEmail(() => userInputEmail);
         setMessage('');
         inputHandler(true, userInputEmail);
       } else {

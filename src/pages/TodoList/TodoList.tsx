@@ -7,31 +7,31 @@ import { Todo } from '../../components/Todo/Todo';
 import { CreateTodoButton } from '../../components/Todo/CreateTodoButton';
 import { todoState } from '../../modules/recoil/atom/todos';
 import { useRecoilState } from 'recoil';
-import { useQuery,useMutation } from 'react-query';
-import { QueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 export const TodoPage: FC = () => {
   const navigate = useNavigate();
-  const { data } = useQuery<{data : TodoData[]}>('todos', getTodos);
-  console.log("data", data)
+  const { data } = useQuery<{ data: TodoData[] }>('todos', getTodos);
+  console.log('data', data);
   const [todoList, setTodoList] = useRecoilState<TodoData[]>(todoState);
   //goto auth page when not logged in
   useEffect(() => {
-    if (!!isLoggedIn()) navigate('/auth');
+    if (!isLoggedIn()) navigate('/auth');
   }, []);
 
   return (
     <>
-      <h1>this is root page</h1>
+      <h1>this is todo list page</h1>
       <CreateTodoButton />
       <br />
       <ul>
-        {data && data.data.map(({ title, content, id }) => {
-          return (
-            <li key={id} className="mb-3">
+        {data &&
+          data.data.map(({ title, content, id }) => {
+            return (
+              <li key={id} className="mb-3">
                 <Todo title={title} content={content} id={id} />
-            </li>
-          );
-        })}
+              </li>
+            );
+          })}
       </ul>
       <hr />
       <div>

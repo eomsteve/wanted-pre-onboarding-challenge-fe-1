@@ -11,7 +11,6 @@ export const CreateTodoButton: FC = () => {
   const queryClient = new QueryClient();
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const { data } = useQuery<{ data: TodoData[] }>('todos', getTodos);
   const { mutate } = useMutation(() => createTodo(title, content), {
     onSuccess: () => {
       console.log('Success');

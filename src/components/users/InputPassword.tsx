@@ -4,7 +4,7 @@ interface PasswordProps {
   inputHandler: Function;
 }
 export const InputPassword: FC<PasswordProps> = ({ inputHandler }) => {
-  // need state refactoring 
+  // need state refactoring
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const checkPasswordValidation = useCallback(
@@ -15,7 +15,7 @@ export const InputPassword: FC<PasswordProps> = ({ inputHandler }) => {
         setMessage('비밀번호는 8자리 이상입니다.');
         inputHandler(false, '');
       } else {
-        setPassword(()=>userInputPassword);
+        setPassword(() => userInputPassword);
         setMessage('');
         inputHandler(true, userInputPassword);
       }

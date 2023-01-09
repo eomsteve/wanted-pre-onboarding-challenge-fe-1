@@ -6,24 +6,22 @@ export interface UserForm {
 export interface AuthApiResponse {
   message?: string;
   token?: string;
-  details? : string;
+  details?: string;
 }
 
-
-export interface AxiosRequest{
+export interface AxiosRequest {
   method: string;
   url: string;
   functionName: string;
-  body? : UserForm | CreateUpDateTodoList;
+  body?: UserForm | CreateUpDateTodoList;
 }
 
-export interface CreateUpDateTodoList{
+export interface CreateUpDateTodoList {
   title: string;
-  content : string;
+  content: string;
 }
 
-
-export interface TodoData extends CreateUpDateTodoList{
+export interface TodoData extends CreateUpDateTodoList {
   id: string;
   createdAt?: string;
   updatedAt?: string;

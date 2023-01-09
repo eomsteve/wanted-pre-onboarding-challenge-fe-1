@@ -1,8 +1,5 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-export const TodoInput: FC = ()=>{
-  return (
-    <>
-    </>
-  );
-}
+export const TodoInput: FC = () => {
+  return <></>;
+};

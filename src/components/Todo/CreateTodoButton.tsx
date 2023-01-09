@@ -1,11 +1,26 @@
 import React, { FC, useState } from 'react';
-import { createTodo } from '../../modules/API/todos';
+import type { CreateUpDateTodoList, TodoData } from '../../modules/API/types';
+import { createTodo, getTodos } from '../../modules/API/todos';
+import {
+  useQuery,
+  useMutation,
+  QueryClient,
+  InvalidateOptions,
+} from 'react-query';
 export const CreateTodoButton: FC = () => {
+  const queryClient = new QueryClient();
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
+  const { data } = useQuery<{ data: TodoData[] }>('todos', getTodos);
+  const { mutate } = useMutation(() => createTodo(title, content), {
+    onSuccess: () => {
+      console.log('Success');
+      queryClient.invalidateQueries(['todos']);
+    },
+  });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createTodo(title, content);
+    mutate();
   };
   return (
     <>
@@ -14,14 +29,14 @@ export const CreateTodoButton: FC = () => {
           type="text"
           placeholder="title"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTitle(()=> e.target.value)
+            setTitle(() => e.target.value)
           }
         />
         <input
           type="text"
           placeholder="content"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setContent(()=> e.target.value)
+            setContent(() => e.target.value)
           }
         />
         <button type="submit">{`ToDo 생성`}</button>

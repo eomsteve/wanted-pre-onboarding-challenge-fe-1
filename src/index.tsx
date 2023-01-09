@@ -11,17 +11,21 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <RecoilRoot>
       <App />
     </RecoilRoot>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

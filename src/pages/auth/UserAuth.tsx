@@ -34,27 +34,45 @@ export const UserPage: FC = () => {
       email: userInputEmail,
       password: userInputPassword,
     };
-    if (isLoginMode) {
-      loginApi(data).then((res: AuthApiResponse) => {
-        if (res.message) {
-          alert(res.message);
-          res.token && localStorage.setItem('loginToken', res.token);
-          navigate('/');
-        } else {
-          alert(res.details);
-        }
-      });
-    } else {
-      signUpApi(data).then((res: AuthApiResponse) => {
-        if (res.message) {
-          alert(res.message);
-          res.token && localStorage.setItem('loginToken', res.token);
-          navigate('/');
-        } else {
-          alert(res.details);
-        }
-      });
-    }
+    const responseData = async () =>{
+      if(isLoginMode) {
+        return await loginApi(data);
+      }else{
+        return await signUpApi(data);
+      }
+    };
+
+    responseData().then((res: AuthApiResponse) => {
+      if (res.message) {
+        alert(res.message);
+        res.token && localStorage.setItem('loginToken', res.token);
+        navigate('/');
+      } else {
+        alert(res.details);
+      }
+    });
+    
+    // if (isLoginMode) {
+    //   loginApi(data).then((res: AuthApiResponse) => {
+    //     if (res.message) {
+    //       alert(res.message);
+    //       res.token && localStorage.setItem('loginToken', res.token);
+    //       navigate('/');
+    //     } else {
+    //       alert(res.details);
+    //     }
+    //   });
+    // } else {
+    //   signUpApi(data).then((res: AuthApiResponse) => {
+    //     if (res.message) {
+    //       alert(res.message);
+    //       res.token && localStorage.setItem('loginToken', res.token);
+    //       navigate('/');
+    //     } else {
+    //       alert(res.details);
+    //     }
+    //   });
+    // }
   };
 
   const handleMode = () => setIsLoginMode(!isLoginMode);

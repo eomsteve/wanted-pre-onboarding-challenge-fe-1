@@ -34,10 +34,10 @@ export const UserPage: FC = () => {
       email: userInputEmail,
       password: userInputPassword,
     };
-    const responseData = async () =>{
-      if(isLoginMode) {
+    const responseData = async () => {
+      if (isLoginMode) {
         return await loginApi(data);
-      }else{
+      } else {
         return await signUpApi(data);
       }
     };
@@ -46,12 +46,12 @@ export const UserPage: FC = () => {
       if (res.message) {
         alert(res.message);
         res.token && localStorage.setItem('loginToken', res.token);
-        navigate('/');
+        navigate('/auth');
       } else {
         alert(res.details);
       }
     });
-    
+
     // if (isLoginMode) {
     //   loginApi(data).then((res: AuthApiResponse) => {
     //     if (res.message) {

@@ -1,5 +1,6 @@
 import { axiosRequest } from './axiosUtils';
 
+/** 저장한 todo 리스트 불러오기 */
 export const getTodos = () =>
   axiosRequest({
     method: 'GET',
@@ -7,6 +8,10 @@ export const getTodos = () =>
     functionName: 'getTodos',
   });
 
+  /** 
+   * 특정 todo 내용 가져오기 
+   * @param {string} id - 사용자 email
+  */
 export const getTodoById = (id: string) =>
   axiosRequest({
     method: 'GET',
@@ -14,6 +19,11 @@ export const getTodoById = (id: string) =>
     functionName: 'getTodoById',
   });
 
+  /**
+   * Todo 생성 버튼
+   * @param title 
+   * @param content 
+   */
 export const createTodo = (title: string, content: string) =>
   axiosRequest({
     method: 'POST',
@@ -25,6 +35,12 @@ export const createTodo = (title: string, content: string) =>
     },
   });
 
+  /**
+   * update Todo list
+   * @param id 
+   * @param title 
+   * @param content 
+   */
 export const updateTodo = (id: string, title: string, content: string) =>
   axiosRequest({
     method: 'PUT',
@@ -35,7 +51,11 @@ export const updateTodo = (id: string, title: string, content: string) =>
       content,
     },
   });
-
+/**
+ * delete Todo
+ * @param id 
+ * @returns null
+ */
 export const deleteTodo = (id: string) =>
   axiosRequest({
     method: 'DELETE',

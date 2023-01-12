@@ -38,6 +38,7 @@ npm install
 npm start
 ```
 
+
 ### 기술 사용 이유
 
 * CRA : react 를 가장 간편하고 빠르게 세팅하기위해 Create-react-app 보일러 플레이트를 사용했습니다.

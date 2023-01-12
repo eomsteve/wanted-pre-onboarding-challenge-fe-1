@@ -51,28 +51,6 @@ export const UserPage: FC = () => {
         alert(res.details);
       }
     });
-
-    // if (isLoginMode) {
-    //   loginApi(data).then((res: AuthApiResponse) => {
-    //     if (res.message) {
-    //       alert(res.message);
-    //       res.token && localStorage.setItem('loginToken', res.token);
-    //       navigate('/');
-    //     } else {
-    //       alert(res.details);
-    //     }
-    //   });
-    // } else {
-    //   signUpApi(data).then((res: AuthApiResponse) => {
-    //     if (res.message) {
-    //       alert(res.message);
-    //       res.token && localStorage.setItem('loginToken', res.token);
-    //       navigate('/');
-    //     } else {
-    //       alert(res.details);
-    //     }
-    //   });
-    // }
   };
 
   const handleMode = () => setIsLoginMode(!isLoginMode);
@@ -88,8 +66,7 @@ export const UserPage: FC = () => {
         />
       </form>
       <span className={`hover:cursor-pointer`} onClick={handleMode}>
-        {' '}
-        {isLoginMode ? `회원가입 하러가기` : '로그인 하러가기'}{' '}
+        {isLoginMode ? `회원가입 하러가기` : '로그인 하러가기'}
       </span>
     </>
   );

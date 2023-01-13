@@ -1,20 +1,21 @@
 import { FC, useEffect, useState } from 'react';
-import { getTodos } from '../../API/todos';
 import { useNavigate, Outlet, Link } from 'react-router-dom';
 import { isLoggedIn } from '../../API/axiosUtils';
-import { TodoData } from '../../API/types';
 import { Todo } from '../../components/Todo/Todo';
 import { CreateTodoButton } from '../../components/Todo/CreateTodoButton';
-import { useRecoilState } from 'recoil';
-import { useQuery } from 'react-query';
+import { useGetTodos } from '../../hooks/todos/useTodoData';
 export const TodoPage: FC = () => {
   const navigate = useNavigate();
-  const { data } = useQuery<{ data: TodoData[] }>('todos', getTodos);
-  console.log('data', data);
   //goto auth page when not logged in
   useEffect(() => {
     if (!isLoggedIn()) navigate('/auth');
   }, []);
+  // fetch todo list data using react-query
+  const { data , isLoading, isError, error } = useGetTodos();
+  // 아마 suspense로 refactoring 
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <>

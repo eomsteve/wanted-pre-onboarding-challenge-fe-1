@@ -1,25 +1,13 @@
 import React, { FC, useState } from 'react';
 import type { CreateUpDateTodoList, TodoData } from '../../API/types';
-import { createTodo, getTodos } from '../../API/todos';
-import {
-  useQuery,
-  useMutation,
-  QueryClient,
-  InvalidateOptions,
-} from 'react-query';
+import { useCreateTodo } from '../../hooks/todos/useTodoData';
 export const CreateTodoButton: FC = () => {
-  const queryClient = new QueryClient();
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const { mutate } = useMutation(() => createTodo(title, content), {
-    onSuccess: () => {
-      console.log('Success');
-      queryClient.invalidateQueries(['todos']);
-    },
-  });
+  const { mutate : addTodo } = useCreateTodo()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate();
+    addTodo({title, content})
   };
   return (
     <>

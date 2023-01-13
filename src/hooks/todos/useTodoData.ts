@@ -7,25 +7,18 @@ export const useGetTodos = () => {
   return useQuery<{ data: TodoData[] }, AxiosError>(['todos'], getTodos);
 };
 
-const createTodoAction = ({ title, content }: CreateUpDateTodoList) => {
-  return createTodo(title, content);
-};
-
-export const useCreateTodo = () => {
+export const useCreateTodo = ({ title, content }: CreateUpDateTodoList) => {
   const queryClient = useQueryClient();
-  return useMutation(createTodoAction, {
+  return useMutation(()=> createTodo(title, content), {
     onSuccess: () => {
       queryClient.invalidateQueries(['todos']);
     },
   });
 };
 
-const deleteTodoAction = (id : string) =>{
-  return deleteTodo(id);
-}
-export const useDeleteTodo = ()=>{
+export const useDeleteTodo = (id : string)=>{
   const queryClient = useQueryClient();
-  return useMutation(deleteTodoAction, {
+  return useMutation(()=>deleteTodo(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['todos']);
     }

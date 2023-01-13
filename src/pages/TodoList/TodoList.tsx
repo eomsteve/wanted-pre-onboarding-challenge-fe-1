@@ -11,8 +11,8 @@ export const TodoPage: FC = () => {
     if (!isLoggedIn()) navigate('/auth');
   }, []);
   // fetch todo list data using react-query
-  const { data , isLoading, isError, error } = useGetTodos();
-  // 아마 suspense로 refactoring 
+  const { data, isLoading } = useGetTodos();
+  // 아마 suspense로 refactoring
   if (isLoading) {
     return <h2>Loading...</h2>;
   }

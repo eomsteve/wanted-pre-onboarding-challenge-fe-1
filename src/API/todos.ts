@@ -41,7 +41,7 @@ export const createTodo = (title: string, content: string) =>
    * @param title 
    * @param content 
    */
-export const updateTodo = (id: string, title: string, content: string) =>
+export const updateTodo = (id: string | undefined, title: string, content: string) =>
   axiosRequest({
     method: 'PUT',
     url: `/todos/${id}`,

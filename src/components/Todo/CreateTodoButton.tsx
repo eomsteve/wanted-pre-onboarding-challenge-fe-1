@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import type { CreateUpDateTodoList, TodoData } from '../../API/types';
 import { useCreateTodo } from '../../hooks/todos/useTodoData';
 export const CreateTodoButton: FC = () => {
   const [title, setTitle] = useState<string>('');

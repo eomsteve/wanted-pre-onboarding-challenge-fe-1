@@ -19,6 +19,7 @@ export interface AxiosRequest {
 export interface CreateUpDateTodoList {
   title: string;
   content: string;
+  id?:string;
 }
 
 export interface TodoData extends CreateUpDateTodoList {

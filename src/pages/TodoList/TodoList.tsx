@@ -11,7 +11,8 @@ export const TodoPage: FC = () => {
     if (!isLoggedIn()) navigate('/auth');
   }, []);
   // fetch todo list data using react-query
-  const { data, isLoading } = useGetTodos();
+  // 변수 data => TodoList
+  const { data: TodoList, isLoading } = useGetTodos();
   // 아마 suspense로 refactoring
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -23,8 +24,8 @@ export const TodoPage: FC = () => {
       <CreateTodoButton />
       <br />
       <ul>
-        {data &&
-          data.data.map(({ title, content, id }) => {
+        {TodoList &&
+          TodoList.map(({ title, content, id }) => {
             return (
               <li key={id} className="mb-3">
                 <Todo title={title} content={content} id={id} />

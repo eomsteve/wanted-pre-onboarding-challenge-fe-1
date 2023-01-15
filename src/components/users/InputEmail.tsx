@@ -9,7 +9,6 @@ export const InputEmail: FC<EmailProps> = ({ inputHandler }) => {
   const checkEmailValidation = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const userInputEmail = e.target.value;
-
       if (userInputEmail.includes('@') && userInputEmail.includes('.')) {
         setEmail(() => userInputEmail);
         setMessage('');

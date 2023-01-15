@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import type { AxiosRequest } from './types';
 
 export const API_URL = 'http://localhost:8080';
@@ -25,16 +25,25 @@ export const axiosRequest = async ({
   }
 };
 
-export const authHeader = (token: string | null) => {
-  // type guard
-  if (typeof token != null) {
-    return (axios.defaults.headers.common['Authorization'] = `${token}`);
-  } else {
-    return delete axios.defaults.headers.common['Authorization'];
-  }
-};
+/**
+ * * request 요청시, token이 있다면 header에 authorization token 추가
+ */
+
+axios.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      config.headers = {};
+      config.headers.Authorization = token;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+
 
 export const isLoggedIn = (): boolean => {
-  authHeader(localStorage.getItem('loginToken'));
   return !!localStorage.getItem('loginToken');
 };

@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import type { AxiosRequest } from './types';
 
 export const API_URL = 'http://localhost:8080';
@@ -42,7 +42,18 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+/**
+ * * response 할때 토큰값이 response안에 있다면 token을 localhost에 저장
+ */
 
+axios.interceptors.response.use(
+  (config: AxiosResponse) => {
+    const responseData = config.data;
+    console.log(responseData);
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export const isLoggedIn = (): boolean => {
   return !!localStorage.getItem('loginToken');

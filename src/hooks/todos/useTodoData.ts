@@ -2,7 +2,6 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getTodos, createTodo, deleteTodo, updateTodo } from '../../API/todos';
 import type { TodoData, CreateUpDateTodoList } from '../../API/types';
 import { AxiosError } from 'axios';
-import { CreateTodoButton } from '../../components/Todo/CreateTodoButton';
 
 //** fetch todos */
 export const useGetTodos = () => {
@@ -12,7 +11,7 @@ export const useGetTodos = () => {
 //** Create new Todo  */
 export const useCreateTodo = ({ title, content }: CreateUpDateTodoList) => {
   const queryClient = useQueryClient();
-  return useMutation(()=> createTodo(title, content), {
+  return useMutation(() => createTodo(title, content), {
     onSuccess: () => {
       queryClient.invalidateQueries(['todos']);
     },
@@ -20,21 +19,21 @@ export const useCreateTodo = ({ title, content }: CreateUpDateTodoList) => {
 };
 
 //** Delete Todo */
-export const useDeleteTodo = (id : string)=>{
+export const useDeleteTodo = (id: string) => {
   const queryClient = useQueryClient();
-  return useMutation(()=>deleteTodo(id), {
+  return useMutation(() => deleteTodo(id), {
     onSuccess: () => {
       queryClient.invalidateQueries(['todos']);
-    }
-  })
-}
+    },
+  });
+};
 //** Update Todo */
 
-export const useUpdateTodo = ({ id ,title, content }: CreateUpDateTodoList) =>{
+export const useUpdateTodo = ({ id, title, content }: CreateUpDateTodoList) => {
   const queryClient = useQueryClient();
-  return useMutation(()=>updateTodo(id,title,content), {
-    onSuccess : () =>{
-      queryClient.invalidateQueries(['todos'])
-    }
-  })
-}
+  return useMutation(() => updateTodo(id, title, content), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['todos']);
+    },
+  });
+};

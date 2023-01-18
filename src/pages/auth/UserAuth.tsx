@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 export const UserPage: FC = () => {
   const navigate = useNavigate();
-  const [isEmail, setIsEmail] = useState<boolean>(false);
-  const [isPassword, setIsPassword] = useState<boolean>(false);
-  const [userInputEmail, setUserInputEmail] = useState<string>('');
-  const [userInputPassword, setUserInputPassword] = useState<string>('');
-  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [userInputEmail, setUserInputEmail] = useState('');
+  const [userInputPassword, setUserInputPassword] = useState('');
+  const [isLoginMode, setIsLoginMode] = useState(true);
   const emailInputHandle = useCallback((validation: boolean, email: string) => {
     setIsEmail(() => validation);
     setUserInputEmail(() => email);
@@ -59,7 +59,7 @@ export const UserPage: FC = () => {
       <h1>hello world!</h1>
       <form onSubmit={handleSubmit}>
         <InputEmail inputHandler={emailInputHandle} />
-        <InputPassword inputHandler={passwordInputHandle} />
+        <InputPassword inputHandler={passwordInputHandle} loginMode={isLoginMode}/>
         <ConfirmButton
           inputCondition={isEmail && isPassword}
           loginMode={isLoginMode}

@@ -45,7 +45,6 @@ export const UserPage: FC = () => {
     responseData().then((res: AuthApiResponse) => {
       if (res.message) {
         alert(res.message);
-        res.token && localStorage.setItem('loginToken', res.token);
         navigate('/auth');
       } else {
         alert(res.details);

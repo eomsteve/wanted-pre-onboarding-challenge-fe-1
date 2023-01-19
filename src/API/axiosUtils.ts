@@ -49,7 +49,11 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (config: AxiosResponse) => {
     const responseData = config.data;
-    console.log(responseData);
+    console.log(responseData)
+    if(responseData.token){
+      localStorage.setItem('loginToken', responseData.token);
+    }
+    console.log(config)
     return config;
   },
   (error) => Promise.reject(error)
